@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import ArtList from "./components/ArtList";
-import { ART_ENDPOINT } from "./components/consts.jsx";
+import { ART_ENDPOINT, IMAGE_URL_PREFIX } from "./components/consts.jsx";
 function ArtsSection() {
   const [artData, setArtData] = useState(null);
   const [ready, setReady] = useState(false);
@@ -30,11 +30,9 @@ function ArtsSection() {
               artData.map((item, index) => {
                 return (
                   <>
-                    <li>
+                    <li key={index}>
                       <div className="frame">
-                        <img
-                          src={`https://boolean-api-server.fly.dev/${item.imageURL}`}
-                        />
+                        <img src={`${IMAGE_URL_PREFIX}${item.imageURL}`} />
                       </div>
                       <h3>{item.title}</h3>
                       <p>Artist: {item.artist}}</p>
@@ -56,4 +54,3 @@ function ArtsSection() {
 }
 
 export default ArtsSection;
-//https://boolean-api-server.fly.dev/images/paris-street-rainy-day.jpg
